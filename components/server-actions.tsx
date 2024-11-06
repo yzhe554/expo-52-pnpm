@@ -4,11 +4,17 @@
 import 'server-only';
 
 import { View, Image, Text } from 'react-native';
+import { pokemon1 } from '@/data/pokemon1';
 
 export async function renderPokemon() {
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon/2');
-  const json = await res.json();
-  console.log('json: ', json);
+  let json;
+  try {
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon/7');
+    const json = await res.json();
+  } catch {
+    console.log('catch')
+    json = pokemon1;
+  }
   return (
     <View style={{ padding: 8, borderWidth: 1 }}>
       <Text style={{ fontWeight: 'bold', fontSize: 24 }}>{json.name}</Text>
